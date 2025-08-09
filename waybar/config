@@ -1,5 +1,6 @@
 // -*- mode: jsonc -*-
-[{
+[
+{
     "output": ["eDP-1"],
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
@@ -68,7 +69,7 @@
 	}
     },
     "mpris": {
- 	"format": " {status_icon} {dynamic}",
+ 	"format": "{status_icon} {dynamic}",
         "interval": 1,
         "dynamic-len": 40,
 	"status-icons": {
@@ -77,7 +78,7 @@
 		"stopped": ""
 	},
 	"dynamic-order": ["title", "artist"],
-	"ignored-players": ["firefox"]
+	"ignored-players": ["firefox", "chrome"]
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -169,17 +170,19 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad"
+        "hyprland/workspaces",
+        "hyprland/mode",
+        "hyprland/scratchpad"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-        "sway/window"
+        "hyprland/window",
+        "cava",
+        "mpris"
     ],
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "all-outputs": true,
         "warp-on-scroll": true,
         "enable-bar-scroll": true,
@@ -194,15 +197,15 @@
             "10": ""
         }
     },
-    "sway/window": {
+    "hyprland/window": {
         "format": "{title}",
         "max-length": 40,
         "all-outputs": true
     },
-    "sway/mode": {
+    "hyprland/mode": {
         "format": "{}"
     },
-    "sway/scratchpad": {
+    "hyprland/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
@@ -213,5 +216,34 @@
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
+    },
+    "cava": {
+	//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+	"framerate": 30,
+	"autosens": 1,
+	"bars": 14,
+	"lower_cutoff_freq": 50,
+	"higher_cutoff_freq": 10000,
+	"method": "pipewire",
+	"source": "auto",
+	"stereo": true,
+	"bar_delimiter": 0,
+	"noise_reduction": 0.77,
+	"input_delay": 2,
+        "hide_on_silence": true,
+	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+	"actions": {
+	    "on-click-right": "mode"
+	}
+    },
+    "mpris": {
+ 	"format": "{status_icon} {dynamic}",
+        "interval": 1,
+        "dynamic-len": 40,
+	"status-icons": {
+		"playing": "▶",
+		"paused": "⏸",
+		"stopped": ""
+	}
     }
 }]
